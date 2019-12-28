@@ -1,5 +1,9 @@
+	<?php
+		include_once 'includes/dbh.inc.php';
+	?>
 <!doctype html>
 <html lang="en">
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,8 +11,8 @@
     <!--CSS Links -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <title>Watch Anime</title>
+	
+    <title>Anime Database</title>
   </head>
   <body>
 
@@ -17,7 +21,7 @@
 
  <!-- navabar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <a class="navbar-brand" href="index.html">Watch Anime</a>
+  <a class="navbar-brand" href="index.html">Anime Database</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,7 +33,7 @@
       </li>
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Animes
+          Anime
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item sh" href="#">Shounen</a>
@@ -83,9 +87,20 @@
   </a>
 </div>
 <!-- carousel finish -->
+<?php
+	$sql = "SELECT * FROM `animes`";
+$result = $conn->query($sql);
 
-
-
+//if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["Anime_ID"]. " - Name: " . $row["Anime_Name"]. " " . "<br>";
+//    }
+//} else {
+//    echo "0 results";
+}
+$conn->close();
+?>
     <!-- jQuery links-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
